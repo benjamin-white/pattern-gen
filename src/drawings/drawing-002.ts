@@ -7,7 +7,6 @@ const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
   let alternate = 0
-  const debug = false
 
   for (let i = 0; i < cellsX; i++) {
 
@@ -16,11 +15,6 @@ const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
     for (let j = 0; j < cellsY; j++) {
 
       if (alternate % 2 !== 0) {
-
-        if (debug) {
-          ctx.fillStyle = 'pink'
-          ctx.fillRect(i * cellSize, j * cellSize, cellSize, cellSize)
-        }
 
         alternate++
         continue
@@ -35,20 +29,9 @@ const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
       }
 
       ctx.beginPath()
-      ctx.fillStyle = '#000'
       ctx.arc(cellCenter.x, cellCenter.y, radius, 0, TAU)
-      ctx.fill()
-      ctx.beginPath()
-      ctx.fillStyle = '#fff'
-      ctx.arc(cellCenter.x, cellCenter.y, radius - Math.min(margin, 12), 0, TAU)
-      ctx.fill()
-  
-      if (debug) {
-        ctx.beginPath()
-        ctx.fillStyle = 'red'
-        ctx.arc(cellCenter.x, cellCenter.y, 2, 0, TAU)
-        ctx.fill()
-      }
+      ctx.lineWidth = margin
+      ctx.stroke()
 
       alternate++
 
