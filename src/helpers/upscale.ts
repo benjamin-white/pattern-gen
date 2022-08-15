@@ -1,4 +1,4 @@
-const upScale = (
+export const upScale = (
   canvas: HTMLCanvasElement,
   context: CanvasRenderingContext2D,
   [sizeX, sizeY]: [number, number],
@@ -10,5 +10,3 @@ const upScale = (
   canvas.style.width = `${sizeX}px`
   canvas.style.height = `${sizeY}px`
 }
-
-export default upScale

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import upScale from '../helpers/upscale'
+import { upScale } from '../helpers'
 
 export type DrawScriptType =
   (c: CanvasRenderingContext2D, a: [number, number]) => void
