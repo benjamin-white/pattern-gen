@@ -1,4 +1,4 @@
 import Canvas from './components/Canvas'
 
 export default () =>
-  <Canvas width={1000} height={1000} />
+  <Canvas width={2000} height={2000} />
