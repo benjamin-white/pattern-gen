@@ -1,5 +1,5 @@
 import useDraw from '../../hooks/useDraw'
-import drawing from '../../drawings/drawing-006'
+import drawing from '../../drawings/drawing-007'
 
 const Canvas = ({width = 800, height = 800 }) => {
 

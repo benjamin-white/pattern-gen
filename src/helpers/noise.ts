@@ -1,3 +1,0 @@
-// noise funcs here
-
-export {}

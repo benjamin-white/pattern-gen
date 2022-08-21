@@ -1,10 +1,5 @@
 import type { DrawScriptType } from '../hooks/useDraw'
 
-// TODO:
-
-// + oversample area for seamless edges
-// + use noise for distribution instead of random
-
 const TAU = Math.PI * 2
 
 const symbol = ({
