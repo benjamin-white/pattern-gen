@@ -3,28 +3,28 @@ import { fit } from '../helpers'
 import type { DrawScriptType } from '../hooks/useDraw'
 
 const TAU = Math.PI * 2
+const angle = TAU / 6;
 
 const drawing: DrawScriptType = async (ctx, [sizeX, sizeY]) => {
 
-  const cellSize = 100
-  const cellsX = sizeX / cellSize
-  const cellsY = sizeY / cellSize
-
-  ctx.lineWidth = 4
   ctx.lineCap = 'round'
-  ctx.fillStyle = '#FFF'
-  ctx.fillRect(0, 0, sizeX, sizeY)
 
-  for (const i of range(-1, cellsX)) {
-    for (const j of range(-1, cellsY)) {
-      const scale = cellSize * fit(+Math.random().toFixed(1), 0, 1, .1, .9)
-      ctx.lineWidth = scale / 20
+  const gridSize = 50
+  let gridPos = { x: -gridSize, y: gridSize }
+
+  while (gridPos.y < sizeY + gridSize) {
+    while (gridPos.x < sizeX + gridSize) {
+      const scale = gridSize * fit(+Math.random().toFixed(1), 0, 1, .9, 1)
+      ctx.lineWidth = scale * .06
       hexagon(
         ctx,
-        [cellSize * j + cellSize * .5, cellSize * i + cellSize * .5],
-        cellSize * .25
+        [gridPos.x, gridPos.y],
+        gridSize
       )
+      gridPos.x += gridSize * 1.73 // this is eyeballed, need to get correct ratio (right angle triangle from center to edge)
     }
+    gridPos.x = -gridSize
+    gridPos.y += gridSize * 2
   }
 
 }
@@ -35,17 +35,12 @@ const hexagon = (
   radius: number
 ) => {
 
-  const angle = TAU / 6;
-
   ctx.beginPath()
 
   // draw perimeter
-  for (const i of range(.5, 6.5)) {
+  for (const i of range(.5, 5.5)) {
     ctx.lineTo(cellX + radius * Math.cos(angle * i), cellY + radius * Math.sin(angle * i))
   }
-
-  ctx.closePath()
-  ctx.fill()
 
   // draw inner sides
   for (const i of range(1.5, 6.5, 2)) {
@@ -53,9 +48,7 @@ const hexagon = (
     ctx.lineTo(cellX + radius * Math.cos(angle * i), cellY + radius * Math.sin(angle * i))
   }
 
-  if (Math.random() > .5) {
-    hexagonHatch(ctx, [cellX, cellY], radius, angle)
-  }
+  hexagonHatch(ctx, [cellX, cellY], radius, angle)
 
   ctx.stroke()
 
@@ -68,34 +61,116 @@ const hexagonHatch = (
   angle: number
 ) => {
 
+  type Frequency = 2 | 3 | 4 | 5 | 6
+
+  const frequency: Frequency[] = [2, 3, 4, 5, 6]
+
+  const panelTop = (frequency: Frequency) => {
+    const dist = radius / frequency
+    const direction = Math.round(Math.random())
+    const start = direction ? 3.5 : 5.5 
+    const end = direction ? 5.5 : 3.5
+    for (const i of range(1, frequency)) {
+      const px = cellX + (dist * i) * Math.cos(angle * start)
+      const py = cellY + (dist * i) * Math.sin(angle * start)
+      ctx.moveTo(px, py)
+      ctx.lineTo(px + radius * Math.cos(angle * end), py + radius * Math.sin(angle * end))
+    }
+    if (frequency > 2 || Math.random() < .3) return;
+    for (const i of range(1, frequency)) {
+      const px = cellX + (dist * i) * Math.cos(angle * end)
+      const py = cellY + (dist * i) * Math.sin(angle * end)
+      ctx.moveTo(px, py)
+      ctx.lineTo(px + radius * Math.cos(angle * start), py + radius * Math.sin(angle * start))
+    }
+    // vertical and horizontal!!
+  }
+
+  const panelRight = (frequency: Frequency) => {
+    const dist = radius / frequency;
+    const direction = Math.round(Math.random())
+    const start = direction ? 1.5 : 5.5 
+    const end = direction ? 5.5 : 1.5
+    for (const i of range(1, frequency)) {
+      const px = cellX + (dist * i) * Math.cos(angle * start)
+      const py = cellY + (dist * i) * Math.sin(angle * start)
+      ctx.moveTo(px, py)
+      ctx.lineTo(px + radius * Math.cos(angle * end), py + radius * Math.sin(angle * end))
+    }
+    if (frequency > 2 || Math.random() < .3) return;
+    for (const i of range(1, frequency)) {
+      const px = cellX + (dist * i) * Math.cos(angle * end)
+      const py = cellY + (dist * i) * Math.sin(angle * end)
+      ctx.moveTo(px, py)
+      ctx.lineTo(px + radius * Math.cos(angle * start), py + radius * Math.sin(angle * start))
+    }
+    // diagonal?
+  }
+
+  const panelLeft = (frequency: Frequency) => {
+    const dist = radius / frequency;
+    const direction = Math.round(Math.random())
+    const start = direction ? 3.5 : 1.5 
+    const end = direction ? 1.5 : 3.5
+    for (const i of range(1, frequency)) {
+      const px = cellX + (dist * i) * Math.cos(angle * start)
+      const py = cellY + (dist * i) * Math.sin(angle * start)
+      ctx.moveTo(px, py)
+      ctx.lineTo(px + radius * Math.cos(angle * end), py + radius * Math.sin(angle * end))
+    }
+    if (frequency > 2 || Math.random() < .3) return;
+    for (const i of range(1, frequency)) {
+      const px = cellX + (dist * i) * Math.cos(angle * end)
+      const py = cellY + (dist * i) * Math.sin(angle * end)
+      ctx.moveTo(px, py)
+      ctx.lineTo(px + radius * Math.cos(angle * start), py + radius * Math.sin(angle * start))
+    }
+    // diagonal?
+  }
+
+  // fix 'bottom panel'
+  // detrministically drop structural lines - hatch first and capture? - allow 'out of bounds'?
+  // add panel variants
+  // add wildcards, eg. romboid fill
+
+  if (Math.random() > .2) {
+    panelTop(frequency[~~(Math.random() * frequency.length)])
+  }
+  if (Math.random() > .2) {
+    panelRight(frequency[~~(Math.random() * frequency.length)])
+  }
+  if (Math.random() > .2) {
+    panelLeft(frequency[~~(Math.random() * frequency.length)])
+  }
+
+  // frequency
+  // top | left | right
+  // vertical | horizontal | diagonal
+  // run inset
   // vars = hatchCount, hatchDirection (vertical, horizontal, diagonal (complex))
 
-  const hatchDist = radius / 3
-  const nx = cellX + hatchDist * Math.cos(angle * 1.5)
-  const ny = cellY + hatchDist * Math.sin(angle * 1.5)
-  ctx.moveTo(nx, ny)
-  ctx.lineTo(nx + radius * Math.cos(angle * 5.5), ny + radius * Math.sin(angle * 5.5))
+  // const hatchDist = radius / 6
+  // const nx = cellX + hatchDist * Math.cos(angle * 1.5)
+  // const ny = cellY + hatchDist * Math.sin(angle * 1.5)
+  // ctx.moveTo(nx, ny)
+  // ctx.lineTo(nx + radius * Math.cos(angle * 5.5), ny + radius * Math.sin(angle * 5.5))
 
-  const tx = cellX + hatchDist * 2 * Math.cos(angle * 1.5)
-  const ty = cellY + hatchDist * 2 * Math.sin(angle * 1.5)
-  ctx.moveTo(tx, ty)
-  ctx.lineTo(tx + radius * Math.cos(angle * 5.5), ty + radius * Math.sin(angle * 5.5))
+  // const tx = cellX + hatchDist * 2 * Math.cos(angle * 1.5)
+  // const ty = cellY + hatchDist * 2 * Math.sin(angle * 1.5)
+  // ctx.moveTo(tx, ty)
+  // ctx.lineTo(tx + radius * Math.cos(angle * 5.5), ty + radius * Math.sin(angle * 5.5))
 
-  const hatchDist2 = radius / 4
-  const px = cellX + hatchDist2 * Math.cos(angle * 3.5)
-  const py = cellY + hatchDist2 * Math.sin(angle * 3.5)
-  ctx.moveTo(px, py)
-  ctx.lineTo(px + radius * Math.cos(angle * 5.5), py + radius * Math.sin(angle * 5.5))
+  // const hatchDist2 = radius / 4
 
-  const hx = cellX + hatchDist2 * 2 * Math.cos(angle * 3.5)
-  const hy = cellY + hatchDist2 * 2 * Math.sin(angle * 3.5)
-  ctx.moveTo(hx, hy)
-  ctx.lineTo(hx + radius * Math.cos(angle * 1.5), hy + radius * Math.sin(angle * 1.5))
+  // const hx = cellX + hatchDist2 * 2 * Math.cos(angle * 3.5)
+  // const hy = cellY + hatchDist2 * 2 * Math.sin(angle * 3.5)
+  // ctx.moveTo(hx, hy)
+  // ctx.lineTo(hx + radius * Math.cos(angle * 1.5), hy + radius * Math.sin(angle * 1.5))
 
-  const rx = cellX + hatchDist2 * 3 * Math.cos(angle * 3.5)
-  const ry = cellY + hatchDist2 * 3 * Math.sin(angle * 3.5)
-  ctx.moveTo(rx, ry)
-  ctx.lineTo(rx + radius * Math.cos(angle * 1.5), ry + radius * Math.sin(angle * 1.5))
+  // const rx = cellX + hatchDist2 * 3 * Math.cos(angle * 3.5)
+  // const ry = cellY + hatchDist2 * 3 * Math.sin(angle * 3.5)
+  // ctx.moveTo(rx, ry)
+  // ctx.lineTo(rx + radius * Math.cos(angle * 1.5), ry + radius * Math.sin(angle * 1.5))
 
 }
 

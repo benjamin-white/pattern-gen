@@ -43,8 +43,6 @@ const hexagon = (
     ctx.lineTo(cellX + radius * Math.cos(angle * i), cellY + radius * Math.sin(angle * i))
   }
 
-  // ctx.closePath()
-
   // draw inner sides
   for (const i of range(1.5, 6.5, 2)) {
     ctx.moveTo(cellX, cellY)
