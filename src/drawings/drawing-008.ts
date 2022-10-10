@@ -31,10 +31,7 @@ const symbolB = (
   y: number,
   value: number
 ) => {
-  let noise = fit(getNoiseValue.perlin2(
-x, y
-  ), -1, 1, 0, 1);
-    
+  let noise = fit(getNoiseValue.perlin2(x, y), -1, 1, 0, 1);
   noise = Math.pow(noise, 4) * 12 + 2
   const size = PARAMETERS.SYMBOL_SIZE * noise
   const scale = Math.pow(value / 255, PARAMETERS.SYMBOL_SCALE_FALLOFF)
