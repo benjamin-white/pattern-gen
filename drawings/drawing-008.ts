@@ -63,7 +63,7 @@ const drawing: DrawScriptType = async (ctx, [sizeX, sizeY]) => {
   const cellSize = 1
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
-  const dispPoints = await displacementFromImage('./src/assets/torus2.png', sizeX, sizeY) as number[]
+  const dispPoints = await displacementFromImage('./assets/torus2.png', sizeX, sizeY) as number[]
   const calcDist = (coords: [number, number], exponent=3.3) => {
     const rawDist = dispPoints[Math.floor(coords[0]) + Math.floor(coords[1]) * sizeX] / 5000
     return rawDist < .05 ? rawDist - Math.random() * .01 : rawDist + Math.random() * 1
