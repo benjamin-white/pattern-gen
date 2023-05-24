@@ -40,7 +40,7 @@ const navItems = [
     slug: 'drawing-010'
   },
   {
-    title: 'Drawing 011',
+    title: 'Drawing 011 *',
     slug: 'drawing-011'
   },
   {
@@ -58,6 +58,14 @@ const navItems = [
   {
     title: 'Drawing 015',
     slug: 'drawing-015'
+  },
+  {
+    title: 'Layout 001',
+    slug: 'layout-001'
+  },
+  {
+    title: 'Layout 002',
+    slug: 'layout-002'
   },
 ]
 
