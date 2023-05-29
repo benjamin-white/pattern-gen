@@ -11,28 +11,29 @@
 }
 
 .menu li {
-  color: rgb(161, 133, 142);
-  margin: 0 0 .75rem;
+  color: rgb(249, 249, 249);
+  margin: 0 0 0.75rem;
   padding: 0;
 }
 
 .menu li:global(.isActive) {
-  color: #4d4c53;
+  color: #7de6cf;
   pointer-events: none;
 }
 
 .menu li:global(.isActive) a {
   transform: scale(1.1);
+  transform-origin: 50% 50%;
 }
 
 .menu a {
   color: inherit;
   display: block;
   text-decoration: none;
-  transition: color .3s ease-out, transform .3s ease-out;
+  transition: color 0.3s ease-out, transform 0.3s ease-out;
   transform-origin: 0% 50%;
 }
 
 .menu a:hover {
-  color: rgb(98, 86, 86)
+  color: #7de6cf;
 }
