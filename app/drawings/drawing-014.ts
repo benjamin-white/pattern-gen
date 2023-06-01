@@ -1,6 +1,5 @@
 import type { DrawScriptType } from "../hooks/useDraw";
-import { loopCells } from "../helpers/utils/loopCells";
-import Noise, { Grad } from "../helpers/utils/noise";
+import { Noise, Grad, loopCells } from "@arklo/toolbox";
 
 const getNoiseValue = new Noise(Grad);
 

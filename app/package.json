@@ -1,12 +1,10 @@
 {
-  "name": "vite-project",
+  "name": "next-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "devapp": "pnpm --filter next-app dev",
-    "toolboxbuild": "pnpm --filter @arklo/toolbox tsc",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
@@ -14,10 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^9.19.6",
     "@react-three/fiber": "^8.2.2",
-    "@types/p5": "^1.4.2",
     "next": "latest",
-    "p5": "^1.4.2",
-    "radash": "^7.1.0",
     "react": "latest",
     "react-dom": "latest",
     "three": "^0.143.0",

@@ -1,5 +1,5 @@
 import { range } from "radash";
-import { fit } from "../helpers";
+import { fit } from "@arklo/toolbox";
 import type { DrawScriptType } from "../hooks/useDraw";
 
 const TAU = Math.PI * 2;

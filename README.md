@@ -17,3 +17,5 @@ https://nhost.io/blog/how-we-configured-pnpm-and-turborepo-for-our-monorepo
 
 Use Changesets?
 https://github.com/changesets/changesets
+
+!! WE ARE USING VITE HERE

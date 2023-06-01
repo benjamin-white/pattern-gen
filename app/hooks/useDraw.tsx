@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { upScale } from "../helpers";
+import { upScale } from "@arklo/toolbox";
 
 export type DrawScriptType = (
   c: CanvasRenderingContext2D,

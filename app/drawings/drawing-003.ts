@@ -1,4 +1,4 @@
-import normal from "../helpers/utils/gaussian";
+import { normal } from "@arklo/toolbox";
 import type { DrawScriptType } from "../hooks/useDraw";
 
 const symbol = (

@@ -1,27 +1,30 @@
 {
-  "name": "vite-project",
+  "name": "@arklo/toolbox",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "description": "Just a bunch of helper functions for graphics",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "devapp": "pnpm --filter next-app dev",
-    "toolboxbuild": "pnpm --filter @arklo/toolbox tsc",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@react-three/drei": "^9.19.6",
     "@react-three/fiber": "^8.2.2",
     "@types/p5": "^1.4.2",
-    "next": "latest",
+    "lodash": "^4.17.21",
     "p5": "^1.4.2",
+    "poisson-disk-sampling": "^2.3.1",
     "radash": "^7.1.0",
-    "react": "latest",
-    "react-dom": "latest",
-    "three": "^0.143.0",
-    "@arklo/toolbox": "workspace:*"
+    "three": "^0.143.0"
   },
   "devDependencies": {
     "@types/node": "18.11.9",
