@@ -1,14 +1,17 @@
-import { clamp } from "./clamp";
-import displacementFromImage from "./displacementFromImage";
-import fit from "./fit";
-import lerp from "./lerp";
-import { loopCells } from "./loopCells";
-import Noise, { Grad } from "./noise";
-import { normalRange } from "./normalRange";
-import upScale from "./upscale";
-import wrapText from "./wrap-text";
-export { default as scatterPoints } from "./poissonSampling";
-export { default as normal } from "./gaussian";
+import { clamp } from './src/clamp'
+import displacementFromImage from './src/displacementFromImage'
+import fit from './src/fit'
+import lerp from './src/lerp'
+import { loopCells } from './src/loopCells'
+import Noise, { Grad } from './src/noise'
+import { normalRange } from './src/normalRange'
+import upScale from './src/upscale'
+import wrapText from './src/wrap-text'
+export { default as scatterPoints } from './src/poissonSampling'
+export { default as normal } from './src/gaussian'
+export { default as Shape } from './src/Shape'
+export { Vector } from './src/Vector'
+export { vecAdjustMagnitude } from './src/vecAdjustMagnitude'
 
 export {
   clamp,
@@ -21,4 +24,4 @@ export {
   normalRange,
   upScale,
   wrapText,
-};
+}

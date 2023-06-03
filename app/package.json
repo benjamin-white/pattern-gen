@@ -10,13 +10,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@arklo/toolbox": "workspace:*",
     "@react-three/drei": "^9.19.6",
     "@react-three/fiber": "^8.2.2",
+    "@szhsin/react-accordion": "^1.2.1",
+    "clsx": "^1.2.1",
     "next": "latest",
+    "radash": "^7.1.0",
     "react": "latest",
     "react-dom": "latest",
-    "three": "^0.143.0",
-    "@arklo/toolbox": "workspace:*"
+    "three": "^0.143.0"
   },
   "devDependencies": {
     "@types/node": "18.11.9",

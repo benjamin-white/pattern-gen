@@ -1,9 +1,7 @@
-declare namespace CSS {
-  interface PropertyDefinition {
-    name: string
-    syntax?: string
-    inherits: boolean
-    initialValue?: string | number
-  }
-  function registerProperty (propertyDefinition: PropertyDefinition): undefined
+interface CellSymbol {
+  (arg0: {
+    ctx: CanvasRenderingContext2D
+    cells: [number, number]
+    cellSize: number
+  }): void
 }

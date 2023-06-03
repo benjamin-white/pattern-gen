@@ -1,6 +1,0 @@
-import Canvas from '../components/Canvas'
-import drawing from '../drawings/drawing-011'
-
-const Page = () => <Canvas drawing={drawing} />
-
-export default Page

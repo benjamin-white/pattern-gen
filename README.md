@@ -2,8 +2,6 @@
 
 https://github.com/nicolaspanel/numjs
 
-Setup worksspaces
-
 Complexity explorables!
 
 Add sub menu routing
@@ -19,3 +17,21 @@ Use Changesets?
 https://github.com/changesets/changesets
 
 !! WE ARE USING VITE HERE
+
+!!! USE IMPORT ALIASES !!!
+
+ZOD!?
+
+- Tidy up Toolbox!
+
+- Upgarde to next13 / use nav nested structure
+
+Patterns
+Geometric
+Organic
+Sketches
+
+- 404...
+  Layouts
+  DYNAMIC: drawing-\* ??
+  TIDY: / helpers
