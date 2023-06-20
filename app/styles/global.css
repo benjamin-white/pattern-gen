@@ -1,0 +1,10 @@
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+  background: rgb(142, 141, 141);
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

@@ -1,0 +1,32 @@
+{
+  "name": "next-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@arklo/toolbox": "workspace:*",
+    "@react-three/drei": "^9.19.6",
+    "@react-three/fiber": "^8.2.2",
+    "@szhsin/react-accordion": "^1.2.1",
+    "clsx": "^1.2.1",
+    "next": "latest",
+    "radash": "^7.1.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "^0.143.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.9",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "ts-standard": "^12.0.1",
+    "typescript": "^4.6.4"
+  }
+}

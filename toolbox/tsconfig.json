@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "declaration": true,
+    "outDir": "./dist"
+  },
+  "include": ["index.ts", "types.d.ts", "src/types.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}
