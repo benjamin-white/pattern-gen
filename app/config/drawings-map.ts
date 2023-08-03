@@ -10,10 +10,13 @@ import patternsGeometric009 from '../drawings/patterns/geometric/009'
 import patternsGeometric010 from '../drawings/patterns/geometric/010'
 import patternsGeometric011 from '../drawings/patterns/geometric/011'
 import patternsGeometric012 from '../drawings/patterns/geometric/012'
+import patternsGeometric013 from '../drawings/patterns/geometric/013'
+import patternsGeometric014 from '../drawings/patterns/geometric/014'
 import patternsOrganic001 from '../drawings/patterns/organic/001'
 import patternsOrganic002 from '../drawings/patterns/organic/002'
 import layout001 from '../drawings/layouts/001'
 import layout002 from '../drawings/layouts/002'
+import sketch001 from '../drawings/sketches/001'
 import { DrawScriptType } from '../hooks/useDraw'
 
 export type DrawingEntry = {
@@ -93,6 +96,16 @@ const patterns = {
           slug: '012',
           script: patternsGeometric012,
         },
+        {
+          title: '013',
+          slug: '013',
+          script: patternsGeometric013,
+        },
+        {
+          title: '014',
+          slug: '014',
+          script: patternsGeometric014,
+        },
       ],
     },
     {
@@ -131,6 +144,24 @@ const layouts = {
   ],
 }
 
-const drawings: DrawingsMap = [patterns, layouts]
+const shapes = {
+  title: 'Shapes',
+  slug: 'shapes',
+  children: [],
+}
+
+const sketches = {
+  title: 'Sketches',
+  slug: 'sketches',
+  children: [
+    {
+      title: '001',
+      slug: '001',
+      script: sketch001,
+    },
+  ],
+}
+
+const drawings: DrawingsMap = [patterns, layouts, shapes, sketches]
 
 export default drawings

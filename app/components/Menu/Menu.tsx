@@ -16,7 +16,7 @@ const Menu = ({ navItems }: { navItems: NavItem[] }) => {
     <div className={styles.menu}>
       <Accordion transition transitionTimeout={250} allowMultiple>
         {navItems.map((item) => (
-          <MenuItem {...item} pathName={asPath} />
+          <MenuItem {...item} pathName={asPath} key={item.slug} />
         ))}
       </Accordion>
     </div>

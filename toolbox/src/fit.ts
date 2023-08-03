@@ -1,8 +1,15 @@
 import { clamp } from './clamp'
 
-const fit = (current: number, in_min: number, in_max: number, out_min: number, out_max: number) => {
-  const mapped = ((current - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-  return clamp(mapped, out_min, out_max)
+const fit = (
+  current: number,
+  inMin: number,
+  inMax: number,
+  outMin: number,
+  outMax: number,
+) => {
+  const mapped =
+    ((current - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+  return clamp(mapped, outMin, outMax)
 }
 
 export default fit

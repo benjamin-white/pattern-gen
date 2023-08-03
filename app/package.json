@@ -15,7 +15,9 @@
     "@react-three/fiber": "^8.2.2",
     "@szhsin/react-accordion": "^1.2.1",
     "clsx": "^1.2.1",
+    "modern-normalize": "^2.0.0",
     "next": "latest",
+    "postcss": "^8.4.27",
     "radash": "^7.1.0",
     "react": "latest",
     "react-dom": "latest",
@@ -26,6 +28,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
+    "postcss-preset-env": "^9.1.0",
     "ts-standard": "^12.0.1",
     "typescript": "^4.6.4"
   }

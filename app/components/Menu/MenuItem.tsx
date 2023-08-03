@@ -5,10 +5,8 @@ import { Accordion, AccordionItem } from '@szhsin/react-accordion'
 import { NavItem } from './Menu'
 
 const accordionItemStyles = {
-  className: styles.item,
-  contentProps: { className: styles.itemContent },
-  panelProps: { className: styles.itemPanel },
-  buttonProps: { className: styles.button },
+  contentProps: { className: styles.item },
+  buttonProps: { className: 'link' },
 }
 
 type MenuItemProps = NavItem & {
@@ -34,17 +32,24 @@ const MenuItem = ({
         className={styles.accordion}
       >
         {children.map((child) => (
-          <MenuItem {...child} pathName={pathName} path={itemPath} />
+          <MenuItem
+            {...child}
+            pathName={pathName}
+            path={itemPath}
+            key={child.slug}
+          />
         ))}
       </Accordion>
     </AccordionItem>
   ) : (
-    <Link
-      href={itemPath}
-      className={clsx(styles.link, pathName === itemPath && styles.isActive)}
-    >
-      {title}
-    </Link>
+    <div>
+      <Link
+        href={itemPath}
+        className={clsx('link', pathName === itemPath && 'isActive')}
+      >
+        {title}
+      </Link>
+    </div>
   )
 }
 

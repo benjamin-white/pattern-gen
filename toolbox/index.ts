@@ -12,6 +12,7 @@ export { default as normal } from './src/gaussian'
 export { default as Shape } from './src/Shape'
 export { Vector } from './src/Vector'
 export { vecAdjustMagnitude } from './src/vecAdjustMagnitude'
+export { default as texturePaper } from './src/util/texturePaper'
 
 export {
   clamp,

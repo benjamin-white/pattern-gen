@@ -15,13 +15,13 @@ const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
 }
 
 const symbol: CellSymbol = ({ ctx, cells: [x, y], cellSize }) => {
-  const noise = getNoiseValue.perlin2(x * 0.46, y * 0.006)
+  const noise = getNoiseValue.perlin2(x * 0.06, y * 0.008)
   // const noise = getNoiseValue.simplex2(x * .004, y * .009);
   // if (Math.random() > .9) return;
   // if (getNoiseValue.perlin2(x * 0.009, y * 0.009) > 0 || Math.random() > 0.8)
   //   return;
   // const direction = Math.random() > .5 ? 1 : 0
-  const probability = 0.2
+  const probability = 0.1
 
   ctx.beginPath()
   ctx.moveTo(x + (noise > probability ? cellSize : 0), y)

@@ -1,10 +1,34 @@
 body {
+  color: var(--color-font);
   font-size: 16px;
-  font-family: sans-serif;
-  background: rgb(142, 141, 141);
+  font-family: 'Inter', sans-serif;
   line-height: 1.5;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.025em;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+.link {
+  padding: 0 0.25em;
+  letter-spacing: inherit;
+  border-radius: 4px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-secondary);
+    background: hsl(0deg 0% 90%);
+  }
+
+  &.isActive {
+    color: var(--color-primary);
+    pointer-events: none;
+    transform: translateX(4px);
+    transform-origin: 50% 50%;
+  }
 }

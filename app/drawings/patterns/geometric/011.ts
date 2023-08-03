@@ -2,11 +2,11 @@ import type { DrawScriptType } from '@/hooks/useDraw'
 import { loopCells } from '@arklo/toolbox'
 
 const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
-  const cellSize = 50
+  const cellSize = 16
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
 
-  ctx.lineWidth = 6
+  ctx.lineWidth = 2
   ctx.lineCap = 'round'
 
   loopCells(ctx, cellsX, cellsY, cellSize, symbol)
