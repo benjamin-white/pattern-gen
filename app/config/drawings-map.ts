@@ -16,7 +16,9 @@ import patternsOrganic001 from '../drawings/patterns/organic/001'
 import patternsOrganic002 from '../drawings/patterns/organic/002'
 import layout001 from '../drawings/layouts/001'
 import layout002 from '../drawings/layouts/002'
+import clipping from '../drawings/shapes/clipping'
 import sketch001 from '../drawings/sketches/001'
+import waves from '../drawings/sketches/waves'
 import { DrawScriptType } from '../hooks/useDraw'
 
 export type DrawingEntry = {
@@ -147,7 +149,13 @@ const layouts = {
 const shapes = {
   title: 'Shapes',
   slug: 'shapes',
-  children: [],
+  children: [
+    {
+      title: 'Clipping',
+      slug: 'clipping',
+      script: clipping,
+    },
+  ],
 }
 
 const sketches = {
@@ -158,6 +166,11 @@ const sketches = {
       title: '001',
       slug: '001',
       script: sketch001,
+    },
+    {
+      title: 'Waves',
+      slug: 'waves',
+      script: waves,
     },
   ],
 }
