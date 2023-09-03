@@ -56,16 +56,20 @@ importers:
 
   toolbox:
     specifiers:
+      '@types/delaunator': ^5.0.0
       '@types/node': 18.11.9
+      delaunator: ^5.0.0
       lodash: ^4.17.21
       poisson-disk-sampling: ^2.3.1
       radash: ^7.1.0
       typescript: ^4.6.4
     dependencies:
+      delaunator: 5.0.0
       lodash: 4.17.21
       poisson-disk-sampling: 2.3.1
       radash: 7.1.0
     devDependencies:
+      '@types/delaunator': 5.0.0
       '@types/node': 18.11.9
       typescript: 4.8.4
 
@@ -1036,6 +1040,10 @@ packages:
       react-transition-state: 2.1.0_biqbaboplfbrettd7655fr4n2y
     dev: false
 
+  /@types/delaunator/5.0.0:
+    resolution: {integrity: sha512-00nrXdKbhF9FQsq6MskmdUgEqd5MWzA+x8CoDt8OJqbS4QB528SgkOfEcnQMa2sIg2XTKowwwVQx8iGsAX6CAQ==}
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -1592,6 +1600,12 @@ packages:
     dependencies:
       has-property-descriptors: 1.0.0
       object-keys: 1.1.1
+
+  /delaunator/5.0.0:
+    resolution: {integrity: sha512-AyLvtyJdbv/U1GkiS6gUUzclRoAY4Gs75qkMygJJhU75LW4DNuSF2RMzpxs9jw9Oz1BobHjTdkG3zdP55VxAqw==}
+    dependencies:
+      robust-predicates: 3.0.2
+    dev: false
 
   /detect-gpu/4.0.47:
     resolution: {integrity: sha512-Vmr9sgssuot4YBPmU6Lfm8p7OiksbLITu8uhx5lnxfx/GYmUD4Mbwtws9yxL6vlmoKqMWSkeAvr9IL+U/lP1ug==}
@@ -3445,6 +3459,10 @@ packages:
     dependencies:
       glob: 7.2.3
     dev: true
+
+  /robust-predicates/3.0.2:
+    resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
+    dev: false
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}

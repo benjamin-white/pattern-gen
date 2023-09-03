@@ -1,8 +1,3 @@
-type Vec2 = {
-  x: number
-  y: number
-}
-
 type MakeCircle = Vec2 & { r: number; arcStart?: number; arcEnd?: number }
 type MakeTriangle = Vec2 & { r: number; rotation?: number }
 type MakeRectangle = Vec2 & { w: number; h: number; rotation?: number }

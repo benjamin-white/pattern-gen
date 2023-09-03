@@ -7,3 +7,8 @@ interface CellSymbol {
     cellSize: number
   }): void
 }
+
+interface Vec2 {
+  x: number
+  y: number
+}

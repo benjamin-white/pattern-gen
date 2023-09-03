@@ -17,6 +17,7 @@ import patternsOrganic002 from '../drawings/patterns/organic/002'
 import layout001 from '../drawings/layouts/001'
 import layout002 from '../drawings/layouts/002'
 import clipping from '../drawings/shapes/clipping'
+import voronoi from '../drawings/shapes/voronoi'
 import sketch001 from '../drawings/sketches/001'
 import waves from '../drawings/sketches/waves'
 import { DrawScriptType } from '../hooks/useDraw'
@@ -154,6 +155,11 @@ const shapes = {
       title: 'Clipping',
       slug: 'clipping',
       script: clipping,
+    },
+    {
+      title: 'Voronoi',
+      slug: 'voronoi',
+      script: voronoi,
     },
   ],
 }

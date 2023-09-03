@@ -1,10 +1,5 @@
 import { vecAdjustMagnitude } from './vecAdjustMagnitude'
 
-type Vec2 = {
-  x: number
-  y: number
-}
-
 export class Vector {
   private x: number
   private y: number
