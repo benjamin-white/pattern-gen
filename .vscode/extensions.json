@@ -1,3 +1,11 @@
 {
-  "recommendations": ["esbenp.prettier-vscode"]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "deque-systems.vscode-axe-linter",
+    "dbaeumer.vscode-eslint",
+    "unifiedjs.vscode-mdx",
+    "vunguyentuan.vscode-postcss",
+    "yoavbls.pretty-ts-errors"
+  ]
 }

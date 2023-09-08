@@ -20,6 +20,8 @@ import clipping from '../drawings/shapes/clipping'
 import voronoi from '../drawings/shapes/voronoi'
 import sketch001 from '../drawings/sketches/001'
 import waves from '../drawings/sketches/waves'
+import railHomage from '../drawings/sketches/rail-homage'
+import hexGram from '../drawings/sketches/hexgram'
 import { DrawScriptType } from '../hooks/useDraw'
 
 export type DrawingEntry = {
@@ -177,6 +179,16 @@ const sketches = {
       title: 'Waves',
       slug: 'waves',
       script: waves,
+    },
+    {
+      title: 'Rail Homage',
+      slug: 'rail-homage',
+      script: railHomage,
+    },
+    {
+      title: 'HexGram',
+      slug: 'hexgram',
+      script: hexGram,
     },
   ],
 }

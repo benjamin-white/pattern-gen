@@ -16,6 +16,8 @@ export { default as Shape } from './src/Shape'
 export { Vector } from './src/Vector'
 export { vecAdjustMagnitude } from './src/vecAdjustMagnitude'
 export { default as texturePaper } from './src/util/texturePaper'
+export { default as gridElements } from './src/gridElements'
+import { TAU } from './src/constants'
 
 export {
   clamp,
@@ -31,4 +33,5 @@ export {
   randomiseObject,
   Delaunay,
   Voronoi,
+  TAU,
 }

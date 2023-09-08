@@ -1,6 +1,6 @@
 import type { DrawScriptType } from '@/hooks/useDraw'
 import { Noise, Grad, fit } from '@arklo/toolbox'
-// import {  } from "../helpers";
+import { japaneseElegance } from '@/config/palletes'
 
 const getNoiseValue = new Noise(Grad)
 
@@ -40,17 +40,23 @@ const symbol = ({
 
   const symbols = {
     [SymbolType.DASH]: () => {
-      ctx.fillRect(cellX, cellY, cellSize * (noise + 0.5), cellSize)
+      ctx.strokeStyle = japaneseElegance.melanie
+      ctx.fillStyle = japaneseElegance.whiteLinen
+      ctx.rect(cellX, cellY, cellSize * (noise + 0.5), cellSize)
+      ctx.fill()
+      ctx.stroke()
     },
     [SymbolType.SQUARE]: () => {
       noise += 0.5
       const cellCenterOffset = (cellSize - cellSize * noise) * 0.5
-      ctx.fillRect(
+      ctx.strokeStyle = japaneseElegance.melanie
+      ctx.rect(
         cellX + cellCenterOffset,
         cellY + cellCenterOffset,
         cellSize * noise,
         cellSize * noise,
       )
+      ctx.stroke()
     },
     [SymbolType.CIRCLE]: () => {
       ctx.arc(
@@ -61,26 +67,31 @@ const symbol = ({
         Math.PI * 2,
       )
       ctx.fill()
+      ctx.stroke()
     },
   }
 
   ctx.beginPath()
-  ctx.fillStyle = '#000'
   symbols[type] && symbols[type]()
 }
 
 const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
-  const cellSize = 50
+  const cellSize = 20
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
 
+  ctx.fillStyle = japaneseElegance.casper
+  ctx.fillRect(0, 0, sizeX, sizeY)
+  ctx.fillStyle = japaneseElegance.melanie
+
   for (let i = 0; i < cellsX; i++) {
     for (let j = 0; j < cellsY; j++) {
+      ctx.strokeStyle = japaneseElegance.careysPink
       symbol({
         ctx,
         cellSize,
         cellPos: [i * cellSize, j * cellSize],
-        type: SymbolType.SQUARE,
+        type: SymbolType.CIRCLE,
         noisePattern: NoisePattern.PERLIN3,
       })
     }

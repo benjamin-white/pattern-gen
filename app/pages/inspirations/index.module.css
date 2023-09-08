@@ -1,0 +1,14 @@
+.list {
+  margin: 0;
+  padding: 0;
+  padding-left: 8rem;
+
+  li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & img {
+    max-width: 20%;
+  }
+}
