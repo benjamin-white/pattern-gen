@@ -12,5 +12,3 @@ Page semantics:
   - Building block shape arrangements
 - Sketches
   - Composite generative compositions
-
-TODO: Husky / ESLint config / Commitlint...

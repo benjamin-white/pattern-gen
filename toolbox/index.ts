@@ -17,9 +17,13 @@ export { Vector } from './src/Vector'
 export { vecAdjustMagnitude } from './src/vecAdjustMagnitude'
 export { default as texturePaper } from './src/util/texturePaper'
 export { default as gridElements } from './src/gridElements'
+import getRandom from './src/getRandom'
+import Box3D from './src/Box3D'
 import { TAU } from './src/constants'
 
 export {
+  Box3D,
+  getRandom,
   clamp,
   displacementFromImage,
   fit,

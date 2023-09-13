@@ -1,6 +1,20 @@
 .menu {
-  position: absolute;
+  position: fixed;
   left: 4rem;
   top: 4rem;
-  max-width: 20rem;
+  width: 10rem;
+  overflow: hidden;
+
+  > div {
+    transform: translateX(-10rem);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.7s ease;
+  }
+
+  &.is-active {
+    > div {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 }

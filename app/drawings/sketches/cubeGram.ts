@@ -2,7 +2,7 @@ import { DrawScriptType } from '@/hooks/useDraw'
 import { japaneseElegance } from '@/config/palletes'
 import { TAU, fit, gridElements } from '@arklo/toolbox'
 
-const DEFAULT_SYMBOL_RADIUS = 40
+const DEFAULT_SYMBOL_RADIUS = 60
 const angle = TAU / 3
 
 const drawCellSymbol = (
@@ -30,32 +30,38 @@ const drawCellSymbol = (
   ctx.strokeStyle = japaneseElegance.casper
 
   const axisPoints: [number, number][] = []
+  const rotation = Math.random()
   for (const i of [0, 1, 2]) {
     axisPoints.push([
       localOrigin.x +
         radius *
           fit(Math.random(), 0, 1, 0.1, 1.1) *
-          Math.cos(angle * i + TAU * 0.25),
+          Math.cos(angle * i + TAU * rotation),
       localOrigin.y +
         radius *
           fit(Math.random(), 0, 1, 0.1, 1.1) *
-          Math.sin(angle * i + TAU * 0.25),
+          Math.sin(angle * i + TAU * rotation),
     ])
   }
 
   for (const index in axisPoints) {
     const [x, y] = axisPoints[index]
-    ctx.fillStyle = `rgba(200 208 218 / .4)`
+    ctx.fillStyle = `rgba(200, 208, 218, ${fit(Math.random(), 0, 1, 0.2, 0.6)}`
+    // ctx.moveTo(localOrigin.x, localOrigin.y)
+    // ctx.lineTo(x, y)
+    // ctx.lineTo(axisPoints[(+index + 1) % 3][0], axisPoints[(+index + 1) % 3][1])
+    // ctx.lineTo(localOrigin.x, localOrigin.y)
+    // ctx.fill()
+
+    ctx.beginPath()
     ctx.moveTo(localOrigin.x, localOrigin.y)
     ctx.lineTo(x, y)
+    ctx.lineTo(
+      axisPoints[(+index + 1) % 3][0] + (x - localOrigin.x),
+      axisPoints[(+index + 1) % 3][1] + (y - localOrigin.y),
+    )
     ctx.lineTo(axisPoints[(+index + 1) % 3][0], axisPoints[(+index + 1) % 3][1])
-    ctx.lineTo(localOrigin.x, localOrigin.y)
     ctx.fill()
-
-    ctx.moveTo(localOrigin.x, localOrigin.y)
-    ctx.lineTo(x, y)
-    ctx.lineTo(axisPoints[(+index + 1) % 3][0], axisPoints[(+index + 1) % 3][1])
-
     ctx.stroke()
     ctx.closePath()
   }
