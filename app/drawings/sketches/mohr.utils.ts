@@ -1,6 +1,6 @@
 import { Box3D, fit, getRandom } from '@arklo/toolbox'
 
-const random = getRandom()
+const random = getRandom(true)
 
 export const drawCellSymbolDebug = (
   { ctx, cellSizeX, posX: x, posY: y },

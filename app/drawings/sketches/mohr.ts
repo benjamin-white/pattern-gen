@@ -1,5 +1,5 @@
 import { DrawScriptType } from '@/hooks/useDraw'
-import { japaneseElegance } from '@/config/palletes'
+import { japaneseElegance, tokyoDawn } from '@/config/palletes'
 import { Box3D, fit, getRandom, gridElements } from '@arklo/toolbox'
 import { range } from 'radash'
 
@@ -22,6 +22,7 @@ const drawCellSymbol = (
   radius: number,
 ) => {
   const USE_COLOR_FILL = random() > 0.7
+  const colors = Object.values(tokyoDawn)
   const boxOrigin = { x: x + cellSizeX * 0.5, y: y + cellSizeX * 0.5 }
   const boxOne = new Box3D(
     boxOrigin,
@@ -37,7 +38,12 @@ const drawCellSymbol = (
 
   const edgesOne = boxOne.getEdges()
   const edgesTwo = boxTwo.getEdges()
+  const boundaryVertsOne = boxOne.getPerimiterVerts()
+  const boundaryVertsTwo = boxTwo.getPerimiterVerts()
 
+  /*
+  draw `boxOne` (half cell)
+  */
   ctx.save()
   ctx.rect(
     boxOrigin.x - 0,
@@ -47,19 +53,16 @@ const drawCellSymbol = (
   )
   ctx.clip()
   ctx.beginPath()
-  const boundaryVerts = boxOne.getPerimiterVerts()
-  const colors = Object.values(japaneseElegance)
-  for (const index in boundaryVerts) {
+  for (const index in boundaryVertsOne) {
     if (USE_COLOR_FILL) {
       ctx.fillStyle = colors[~~(colors.length * random())]
     }
     ctx[!index ? 'moveTo' : 'lineTo'](
-      boundaryVerts[index].x,
-      boundaryVerts[index].y,
+      boundaryVertsOne[index].x,
+      boundaryVertsOne[index].y,
     )
   }
   ctx.fill()
-
   for (const edge of edgesOne) {
     ctx.beginPath()
     ctx.moveTo(edge.start.x, edge.start.y)
@@ -68,6 +71,9 @@ const drawCellSymbol = (
   }
   ctx.restore()
 
+  /*
+  draw `boxTwo` (half cell)
+  */
   ctx.save()
   ctx.rect(
     boxOrigin.x - cellSizeX * 0.5,
@@ -76,20 +82,17 @@ const drawCellSymbol = (
     cellSizeX,
   )
   ctx.clip()
-
   ctx.beginPath()
-  const boundaryVerts2 = boxTwo.getPerimiterVerts()
-  for (const index in boundaryVerts2) {
+  for (const index in boundaryVertsTwo) {
     if (USE_COLOR_FILL) {
       ctx.fillStyle = colors[~~(colors.length * random())]
     }
     ctx[!index ? 'moveTo' : 'lineTo'](
-      boundaryVerts2[index].x,
-      boundaryVerts2[index].y,
+      boundaryVertsTwo[index].x,
+      boundaryVertsTwo[index].y,
     )
   }
   ctx.fill()
-
   for (const edge of edgesTwo) {
     ctx.beginPath()
     ctx.moveTo(edge.start.x, edge.start.y)
@@ -98,6 +101,9 @@ const drawCellSymbol = (
   }
   ctx.restore()
 
+  /*
+  draw overlayed inset
+  */
   ctx.save()
   ctx.lineWidth = 4
   ctx.rect(
@@ -107,33 +113,14 @@ const drawCellSymbol = (
     cellSizeX * 0.4,
   )
   ctx.clip()
-
   ctx.beginPath()
-  for (const index in boundaryVerts) {
+  for (const index in boundaryVertsTwo) {
     if (USE_COLOR_FILL) {
       ctx.fillStyle = colors[~~(colors.length * random())]
     }
     ctx[!index ? 'moveTo' : 'lineTo'](
-      boundaryVerts[index].x,
-      boundaryVerts[index].y,
-    )
-  }
-  ctx.fill()
-  for (const edge of edgesOne) {
-    ctx.beginPath()
-    ctx.moveTo(edge.start.x, edge.start.y)
-    ctx.lineTo(edge.end.x, edge.end.y)
-    ctx.stroke()
-  }
-
-  ctx.beginPath()
-  for (const index in boundaryVerts2) {
-    if (USE_COLOR_FILL) {
-      ctx.fillStyle = colors[~~(colors.length * random())]
-    }
-    ctx[!index ? 'moveTo' : 'lineTo'](
-      boundaryVerts2[index].x,
-      boundaryVerts2[index].y,
+      boundaryVertsTwo[index].x,
+      boundaryVertsTwo[index].y,
     )
   }
   ctx.fill()
