@@ -2,6 +2,9 @@ import styles from './index.module.css'
 import wblut001 from './assets/wblut-001.jpeg'
 import wblut002 from './assets/wblut-002.jpeg'
 import wblut003 from './assets/wblut-003.jpeg'
+import mohr001 from './assets/manfred-mohr-p049-1970-76.webp'
+import herzog001 from './assets/leander-herzog-001.jpeg'
+import herzog002 from './assets/leander-herzog-isometric-001.jpeg'
 
 const ExternalLink = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">
@@ -28,6 +31,10 @@ const Index = () => (
       <ExternalLink href="https://leanderherzog.ch/">
         Leander Herzog
       </ExternalLink>
+      <div className="gallery">
+        <img src={herzog001.src} alt="" />
+        <img src={herzog002.src} alt="" />
+      </div>
     </li>
     <li>
       <ExternalLink href="https://lostpixels.io/">James Merill</ExternalLink>
@@ -58,6 +65,13 @@ const Index = () => (
       <ExternalLink href="https://joanielemercier.com/">
         Joanie Lemercier
       </ExternalLink>
+    </li>
+    <li>SupermoodSoup</li>
+    <li>
+      <ExternalLink href="http://www.emohr.com/">Manfred Mohr</ExternalLink>
+      <div className="gallery">
+        <img src={mohr001.src} alt="" />
+      </div>
     </li>
   </ul>
 )
