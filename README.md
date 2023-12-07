@@ -12,3 +12,10 @@ Page semantics:
   - Building block shape arrangements
 - Sketches
   - Composite generative compositions
+
+Principles:
+
+- Scale and transition
+- Layout and arrangement
+- Tone shift
+- Pattern fill

@@ -1,0 +1,245 @@
+import { DrawScriptType } from '@/hooks/useDraw'
+import { japaneseElegance, tokyoDawn } from '@/config/palletes'
+import { Box3D, fit, getRandom, gridElements } from '@arklo/toolbox'
+import { range } from 'radash'
+
+const FIXED_RANDOM = false
+const DEFAULT_SYMBOL_RADIUS = 140
+const random = getRandom(FIXED_RANDOM)
+
+const cellValues = new Array(16).fill({
+  rot: { x: random(), y: random(), z: random() },
+  color: 'pink',
+})
+
+const drawCellSymbol = (
+  {
+    ctx,
+    cellSizeX,
+    posX: x,
+    posY: y,
+  }: {
+    ctx: CanvasRenderingContext2D
+    cellSizeX: number
+    posX: number
+    posY: number
+  },
+  radius: number,
+  currentTime: number,
+) => {
+  // const USE_COLOR_FILL = random() > 0.7
+  const USE_COLOR_FILL = true
+  const colors = Object.values(tokyoDawn)
+  const boxOrigin = { x: x + cellSizeX * 0.5, y: y + cellSizeX * 0.5 }
+  const boxOne = new Box3D(
+    boxOrigin,
+    radius * 0.25 + fit(currentTime / 10000, 0, 1, -6, 6),
+  )
+  const boxTwo = new Box3D(
+    boxOrigin,
+    radius * 0.25 + fit(currentTime / 10000, 0, 1, -6, 6),
+  )
+
+  boxOne.setRotation({
+    x: x * y + currentTime / 2 / 10000,
+    y: x * y + currentTime / 2 / 10000,
+    z: x * y + currentTime / 2 / 10000,
+  })
+  boxTwo.setRotation({
+    x: x * y + currentTime / 10000,
+    y: x * y + currentTime / 10000,
+    z: x * y + currentTime / 10000,
+  })
+
+  const edgesOne = boxOne.getEdges()
+  const edgesTwo = boxTwo.getEdges()
+  const boundaryVertsOne = boxOne.getPerimiterVerts()
+  const boundaryVertsTwo = boxTwo.getPerimiterVerts()
+
+  /*
+  draw `boxOne` (half cell)
+  */
+  ctx.save()
+  ctx.rect(
+    boxOrigin.x - 0,
+    boxOrigin.y - cellSizeX * 0.5,
+    cellSizeX * 0.5,
+    cellSizeX,
+  )
+  ctx.clip()
+  ctx.beginPath()
+  for (const index in boundaryVertsOne) {
+    if (USE_COLOR_FILL) {
+      // ctx.fillStyle = colors[~~(colors.length * random())]
+      ctx.fillStyle = colors[2]
+    }
+    ctx[!index ? 'moveTo' : 'lineTo'](
+      boundaryVertsOne[index].x,
+      boundaryVertsOne[index].y,
+    )
+  }
+  ctx.fill()
+  for (const edge of edgesOne) {
+    ctx.beginPath()
+    ctx.moveTo(edge.start.x, edge.start.y)
+    ctx.lineTo(edge.end.x, edge.end.y)
+    ctx.stroke()
+  }
+  ctx.restore()
+
+  /*
+  draw `boxTwo` (half cell)
+  */
+  ctx.save()
+  ctx.rect(
+    boxOrigin.x - cellSizeX * 0.5,
+    boxOrigin.y - cellSizeX * 0.5,
+    cellSizeX * 0.5,
+    cellSizeX,
+  )
+  ctx.clip()
+  ctx.beginPath()
+  for (const index in boundaryVertsTwo) {
+    if (USE_COLOR_FILL) {
+      // ctx.fillStyle = colors[~~(colors.length * random())]
+      ctx.fillStyle = colors[1]
+    }
+    ctx[!index ? 'moveTo' : 'lineTo'](
+      boundaryVertsTwo[index].x,
+      boundaryVertsTwo[index].y,
+    )
+  }
+  ctx.fill()
+  for (const edge of edgesTwo) {
+    ctx.beginPath()
+    ctx.moveTo(edge.start.x, edge.start.y)
+    ctx.lineTo(edge.end.x, edge.end.y)
+    ctx.stroke()
+  }
+  ctx.restore()
+
+  /*
+  draw overlayed inset
+  */
+  ctx.save()
+  ctx.lineWidth = 4
+  ctx.rect(
+    boxOrigin.x - cellSizeX * 0.2,
+    boxOrigin.y - cellSizeX * 0.2,
+    cellSizeX * 0.4,
+    cellSizeX * 0.4,
+  )
+  ctx.clip()
+  ctx.beginPath()
+  for (const index in boundaryVertsTwo) {
+    if (USE_COLOR_FILL) {
+      // ctx.fillStyle = colors[~~(colors.length * random())]
+      ctx.fillStyle = colors[0]
+    }
+    ctx[!index ? 'moveTo' : 'lineTo'](
+      boundaryVertsTwo[index].x,
+      boundaryVertsTwo[index].y,
+    )
+  }
+  ctx.fill()
+  for (const edge of edgesTwo) {
+    ctx.beginPath()
+    ctx.moveTo(edge.start.x, edge.start.y)
+    ctx.lineTo(edge.end.x, edge.end.y)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+const colorScheme = {
+  blueprint: {
+    stroke: japaneseElegance.casper,
+    fill: '#fcf9f6',
+  },
+  granite: {
+    stroke: '#919595',
+    fill: '#fcf9f6',
+  },
+  paper: {
+    stroke: '#727777',
+    fill: 'rgb(243 240 236)',
+  },
+  blackAndWhite: {
+    stroke: '#727777',
+    fill: '#fff',
+  },
+  tokyo: {
+    stroke: '#f07810',
+    fill: '#3a3f4b',
+  },
+}
+
+const colorSchemeNames = Object.keys(colorScheme)
+
+const currentColorScheme =
+  colorSchemeNames[~~(colorSchemeNames.length * random())]
+
+const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
+  const cellCount = 4
+  const guttersSize = 0
+  const canvasPadding = 100
+  const colWidth = (sizeX - canvasPadding * 2) / cellCount
+
+  ctx.lineCap = 'round'
+  ctx.lineWidth = 1
+  ctx.fillStyle = colorScheme[currentColorScheme].fill
+  ctx.strokeStyle = colorScheme[currentColorScheme].stroke
+
+  random() > 0.5 && ctx.setLineDash([3, 3])
+
+  let startTime: number
+
+  const animate = (timeStamp) => {
+    if (startTime === undefined) {
+      startTime = timeStamp
+    }
+    const elapsed = timeStamp - startTime
+    ctx.fillRect(0, 0, sizeX, sizeY)
+    for (const row of range(1, 4)) {
+      ctx.moveTo(canvasPadding, colWidth * row - colWidth * 0.5 + canvasPadding)
+      ctx.lineTo(
+        sizeX - canvasPadding,
+        colWidth * row - colWidth * 0.5 + canvasPadding,
+      )
+      ctx.stroke()
+    }
+    ctx.setLineDash([])
+    gridElements(
+      {
+        ctx,
+        canvasDimensions: { x: sizeX, y: sizeY },
+        cellCounts: { x: cellCount, y: cellCount },
+        gutters: { x: guttersSize, y: guttersSize },
+        offsets: { x: canvasPadding, y: canvasPadding },
+        drawCallback: drawCellSymbol,
+        debug: false,
+      },
+      DEFAULT_SYMBOL_RADIUS,
+      elapsed,
+    )
+    // random() > 0.5 && ctx.setLineDash([20, 20])
+
+    ctx.beginPath()
+    for (const col of range(1, 4)) {
+      ctx.moveTo(colWidth * col - colWidth * 0.5 + canvasPadding, canvasPadding)
+      ctx.lineTo(
+        colWidth * col - colWidth * 0.5 + canvasPadding,
+        sizeY - canvasPadding,
+      )
+      ctx.stroke()
+    }
+
+    if (elapsed < 5000) {
+      requestAnimationFrame(animate)
+    }
+  }
+
+  requestAnimationFrame(animate)
+}
+
+export default drawing

@@ -24,6 +24,7 @@ import railHomage from '../drawings/sketches/rail-homage'
 import hexGram from '../drawings/sketches/hexgram'
 import cubeGram from '../drawings/sketches/cubeGram'
 import mohr from '../drawings/sketches/mohr'
+import mohrMotion from '../drawings/sketches/mohr-motion'
 import { DrawScriptType } from '../hooks/useDraw'
 
 export type DrawingEntry = {
@@ -201,6 +202,11 @@ const sketches = {
       title: 'mohr',
       slug: 'mohr',
       script: mohr,
+    },
+    {
+      title: 'mohr motion',
+      slug: 'mohr-motion',
+      script: mohrMotion,
     },
   ],
 }
