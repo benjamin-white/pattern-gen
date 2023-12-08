@@ -20,6 +20,11 @@ export { default as gridElements } from './src/gridElements'
 import getRandom from './src/getRandom'
 import Box3D from './src/Box3D'
 import { TAU } from './src/constants'
+import shape from './src/primitives/shape'
+import pattern from './src/primitives/pattern'
+import { default as background } from './src/primitives/canvas/background'
+import { default as withClip } from './src/primitives/canvas/withClip'
+import { default as withOrigin } from './src/primitives/canvas/withOrigin'
 
 export {
   Box3D,
@@ -38,4 +43,9 @@ export {
   Delaunay,
   Voronoi,
   TAU,
+  shape,
+  pattern,
+  background,
+  withClip,
+  withOrigin,
 }

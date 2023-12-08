@@ -4,13 +4,13 @@ const pallete1 = ['#cbffe3', '#000', '#fff']
 
 const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
   const TAU = Math.PI * 2
-  const cellSize = 100
+  const cellSize = 50
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
   let alternate = 0
   const debug = false
 
-  ctx.fillRect(0, 0, sizeX, sizeY)
+  // ctx.fillRect(0, 0, sizeX, sizeY)
   ctx.strokeStyle = '#fff'
   ctx.fillStyle = pallete1[0]
   ctx.lineCap = 'round'
