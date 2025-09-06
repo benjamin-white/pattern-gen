@@ -6,7 +6,7 @@ import MenuItem from './MenuItem'
 import clsx from 'clsx'
 
 export type NavItem = {
-  title: string
+  title: React.ReactNode
   slug: string
   children?: NavItem[]
 }

@@ -1,8 +1,8 @@
-import patternsGeometric001 from '../drawings/patterns/geometric/001'
-import patternsGeometric002 from '../drawings/patterns/geometric/002'
-import patternsGeometric003 from '../drawings/patterns/geometric/003'
+import arcs from '../drawings/patterns/geometric/arcs'
+import chequerCirlces from '../drawings/patterns/geometric/chequer-cirlces'
+import tiledHexagons from '../drawings/patterns/geometric/tiled-hexagons'
 import patternsGeometric004 from '../drawings/patterns/geometric/004'
-import patternsGeometric005 from '../drawings/patterns/geometric/005'
+import dotGrid from '../drawings/patterns/geometric/dot-grid'
 import patternsGeometric006 from '../drawings/patterns/geometric/006'
 import patternsGeometric007 from '../drawings/patterns/geometric/007'
 import patternsGeometric008 from '../drawings/patterns/geometric/008'
@@ -11,7 +11,8 @@ import patternsGeometric010 from '../drawings/patterns/geometric/010'
 import patternsGeometric011 from '../drawings/patterns/geometric/011'
 import patternsGeometric012 from '../drawings/patterns/geometric/012'
 import patternsGeometric013 from '../drawings/patterns/geometric/013'
-import patternsGeometric014 from '../drawings/patterns/geometric/014'
+import geometricTiles from '../drawings/patterns/geometric/geometric-tiles'
+import dotChequers from '../drawings/patterns/geometric/dot-chequers'
 import patternsOrganic001 from '../drawings/patterns/organic/001'
 import patternsOrganic002 from '../drawings/patterns/organic/002'
 import layout001 from '../drawings/layouts/001'
@@ -45,19 +46,19 @@ const patterns = {
       slug: 'geometric',
       children: [
         {
-          title: '001',
-          slug: '001',
-          script: patternsGeometric001,
+          title: 'Arcs',
+          slug: 'arcs',
+          script: arcs,
         },
         {
-          title: '002',
-          slug: '002',
-          script: patternsGeometric002,
+          title: 'Chequer Cirlces',
+          slug: 'chequer-cirlces',
+          script: chequerCirlces,
         },
         {
-          title: '003',
-          slug: '003',
-          script: patternsGeometric003,
+          title: 'Tiled Hexagons',
+          slug: 'tiled-hexagons',
+          script: tiledHexagons,
         },
         {
           title: '004',
@@ -65,9 +66,14 @@ const patterns = {
           script: patternsGeometric004,
         },
         {
-          title: '005',
-          slug: '005',
-          script: patternsGeometric005,
+          title: 'Dot Chequers',
+          slug: 'dot-chequers',
+          script: dotChequers,
+        },
+        {
+          title: 'Dot Grid',
+          slug: 'dot-grid',
+          script: dotGrid,
         },
         {
           title: '006',
@@ -110,9 +116,9 @@ const patterns = {
           script: patternsGeometric013,
         },
         {
-          title: '014',
-          slug: '014',
-          script: patternsGeometric014,
+          title: 'Geometric Tiles',
+          slug: 'geometric-tiles',
+          script: geometricTiles,
         },
       ],
     },
@@ -207,6 +213,18 @@ const sketches = {
       title: 'mohr motion',
       slug: 'mohr-motion',
       script: mohrMotion,
+    },
+    {
+      title: 'TBC: Levy Flight',
+      slug: 'levy-flight',
+    },
+    {
+      title: 'TBC: Random Walk (Brownian)',
+      slug: 'random-walk',
+    },
+    {
+      title: 'TBC: Truchet Tiles',
+      slug: 'truchet-tiles',
     },
   ],
 }

@@ -105,12 +105,12 @@ const drawing: DrawScriptType = async (ctx, [sizeX, sizeY]) => {
       Math.floor(y),
       dispPoints[Math.floor(x) + sizeX * Math.floor(y)],
     )
-    symbolB(
-      ctx,
-      Math.floor(x),
-      Math.floor(y),
-      dispPoints[Math.floor(x) + sizeX * Math.floor(y)],
-    )
+    // symbolB(
+    //   ctx,
+    //   Math.floor(x),
+    //   Math.floor(y),
+    //   dispPoints[Math.floor(x) + sizeX * Math.floor(y)],
+    // )
   })
 }
 

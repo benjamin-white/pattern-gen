@@ -67,7 +67,7 @@ const symbol = ({
         Math.PI * 2,
       )
       ctx.fill()
-      ctx.stroke()
+      // ctx.stroke()
     },
   }
 
@@ -80,13 +80,14 @@ const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
 
-  ctx.fillStyle = japaneseElegance.casper
+  ctx.fillStyle = '#fff'
   ctx.fillRect(0, 0, sizeX, sizeY)
-  ctx.fillStyle = japaneseElegance.melanie
+  // ctx.fillStyle = japaneseElegance.melanie
+  ctx.fillStyle = '#000'
 
   for (let i = 0; i < cellsX; i++) {
     for (let j = 0; j < cellsY; j++) {
-      ctx.strokeStyle = japaneseElegance.careysPink
+      // ctx.strokeStyle = japaneseElegance.careysPink
       symbol({
         ctx,
         cellSize,

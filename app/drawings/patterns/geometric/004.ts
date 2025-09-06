@@ -11,9 +11,7 @@ const symbol = ({
   cellSize: number
   cellPos: [number, number]
 }) => {
-  if (cellY % 200 === 0) return
-
-  ctx.lineWidth = 24 + Math.floor(Math.random() * 10)
+  ctx.lineWidth = 6 + Math.floor(Math.random() * 10)
   ctx.beginPath()
   ctx.arc(
     cellX + cellSize * 0.5,
@@ -23,13 +21,13 @@ const symbol = ({
     TAU * 0.75,
   )
   ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(cellX + cellSize * 0.5, cellY, cellSize, TAU * 0.75, TAU)
-  ctx.stroke()
+  // ctx.beginPath()
+  // ctx.arc(cellX + cellSize * 0.5, cellY, cellSize, TAU * 0.75, TAU)
+  // ctx.stroke()
 }
 
 const drawing: DrawScriptType = (ctx, [sizeX, sizeY]) => {
-  const cellSize = 100
+  const cellSize = 50
   const cellsX = sizeX / cellSize
   const cellsY = sizeY / cellSize
   let alternate = 0
